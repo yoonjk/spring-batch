@@ -1,0 +1,19 @@
+version: "3"   # 파일규격버전
+
+services: 
+  db:   # 서비스이름
+    image: mysql:8.0.17  # 이미지
+    container_name: mysql   # 컨테이너 이름
+    ports:
+      - "3306:3306"   # 포트 설정  외부:내부
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234qwer"   # 패스워드설정
+      MYSQL_DATABASE: "spring-batch"
+      MYSQL_USER: "user01"
+      MYSQL_PASSWORD: "passw0rd"
+    command:
+      - --character-set-server=utf8mb4      # 인코딩
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - c:/project/db/mysql:/dev/docker/db/mysql    # 마운트 설정
+      - c:/project/db/mysql/init/init.sql:/data/application/init.sql
